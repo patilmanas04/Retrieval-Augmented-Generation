@@ -50,12 +50,9 @@ def ask_question(question):
 
   Context:
   {context}
-
-  User Query:
-  {question}
   """
 
-  messages = chat_history + [HumanMessage(content=raw_prompt)]
+  messages = [SystemMessage(content=raw_prompt)] + chat_history + [HumanMessage(content=question)]
 
   ai_response = llm.invoke(messages)
   ai_message = ai_response.content
